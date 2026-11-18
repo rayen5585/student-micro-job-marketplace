@@ -1,0 +1,51 @@
+<div class="form-container">
+  <h2>{{ jobId ? 'Edit job' : 'Post a new job' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="title">Title</label>
+    <input id="title" formControlName="title" placeholder="Ex: Design a logo" />
+    @if (title.touched && title.invalid) {
+      <small class="error">Title is required (min 5 characters)</small>
+    }
+
+    <label for="description">Description</label>
+    <textarea id="description" rows="4" formControlName="description"></textarea>
+    @if (description.touched && description.invalid) {
+      <small class="error">Description is required (min 20 characters)</small>
+    }
+
+    <label for="budget">Budget (TND)</label>
+    <input id="budget" type="number" formControlName="budget" />
+    @if (budget.touched && budget.invalid) {
+      <small class="error">Budget must be a number between 5 and 1000</small>
+    }
+
+    <label for="category">Category</label>
+    <select id="category" formControlName="category">
+      <option value="">-- Choose a category --</option>
+      @for (c of categories; track c) {
+        <option [value]="c">{{ c }}</option>
+      }
+    </select>
+    @if (category.touched && category.invalid) {
+      <small class="error">Please choose a category</small>
+    }
+
+    <label for="deadline">Deadline</label>
+    <input id="deadline" type="date" formControlName="deadline" />
+    @if (deadline.touched && deadline.invalid) {
+      <small class="error">Deadline is required</small>
+    }
+
+    @if (errorMessage()) {
+      <p class="error">{{ errorMessage() }}</p>
+    }
+
+    <div class="actions">
+      <button type="submit" [disabled]="form.invalid">
+        {{ jobId ? 'Update' : 'Publish' }}
+      </button>
+      <a routerLink="/jobs">Cancel</a>
+    </div>
+  </form>
+</div>

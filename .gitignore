@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Angular build and cache
+frontend/dist/
+frontend/.angular/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db

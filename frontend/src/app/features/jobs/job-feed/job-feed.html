@@ -1,0 +1,30 @@
+<div class="feed">
+  <div class="feed-header">
+    <h2>Available Gigs</h2>
+    <a routerLink="/jobs/new" class="btn">+ Post a job</a>
+  </div>
+
+  @if (loading()) {
+    <p>Loading...</p>
+  } @else if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else if (jobs().length === 0) {
+    <p>No jobs available yet. Be the first to post one!</p>
+  } @else {
+    <div class="grid">
+      @for (job of jobs(); track job.id) {
+        <div class="card">
+          <span class="category">{{ job.category }}</span>
+          <h3>{{ job.title }}</h3>
+          <p>{{ job.description }}</p>
+          <p class="budget">{{ job.budget }} TND</p>
+          <p class="deadline">Deadline: {{ job.deadline | date: 'dd/MM/yyyy' }}</p>
+          <div class="card-actions">
+            <a [routerLink]="['/jobs', job.id, 'edit']">Edit</a>
+            <button type="button" (click)="deleteJob(job.id)">Delete</button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
