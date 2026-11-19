@@ -1,0 +1,7 @@
+<span class="skill-tag">
+  {{ name() }}
+
+  @if (removable()) {
+    <button class="remove-skill" (click)="onRemove()">×</button>
+  }
+</span>

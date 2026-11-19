@@ -1,0 +1,25 @@
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.remove-skill {
+  border: none;
+  background: transparent;
+  color: #dc2626;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.remove-skill:hover {
+  color: #991b1b;
+}
