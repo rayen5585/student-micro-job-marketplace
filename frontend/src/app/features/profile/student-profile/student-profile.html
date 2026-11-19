@@ -1,0 +1,93 @@
+<div class="profile-container">
+
+  @if (student(); as s) {
+    <div class="profile-header">
+      <div class="avatar">
+        {{ s.name.charAt(0) }}
+      </div>
+
+      <div class="profile-info">
+        <h1>{{ s.name }}</h1>
+        <p>{{ s.email }}</p>
+        <span class="badge rounded-pill text-bg-success">Freelancer · Disponible pour travailler</span>
+      </div>
+
+      <button class="btn btn-primary" (click)="beginEdit()">
+        Modifier le profil
+      </button>
+    </div>
+
+    @if (editMode() && editStudent(); as edit) {
+      <section class="profile-section">
+        <h2>Modifier mon profil</h2>
+
+        <label>Nom :</label>
+        <input type="text" class="form-control" [(ngModel)]="edit.name">
+
+        <label>Email :</label>
+        <input type="email" class="form-control" [(ngModel)]="edit.email">
+
+        <label>Portfolio :</label>
+        <input type="text" class="form-control" [(ngModel)]="edit.portfolio">
+
+        <label>Compétences :</label>
+        <label>Ajouter une compétence :</label>
+        <div class="skill-input">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newSkill"
+            placeholder="Exemple : Python"
+          >
+
+          <button class="btn btn-primary" (click)="addSkill()">
+            Ajouter
+          </button>
+        </div>
+
+        <div class="skills-list">
+          @for (skill of edit.skills; track skill) {
+            <app-skill-tag
+              [name]="skill"
+              [removable]="true"
+              (remove)="removeSkill($event)" />
+          }
+        </div>
+
+        <button class="btn btn-primary mt-3" (click)="saveProfile()">
+          Enregistrer
+        </button>
+
+        <button class="btn btn-secondary mt-3 ms-2" (click)="cancelEdit()">
+          Annuler
+        </button>
+      </section>
+    }
+
+    <section class="profile-section">
+      <h2>Mes compétences ({{ skillsCount() }})</h2>
+
+      <div class="skills-list">
+        @for (skill of s.skills; track skill) {
+          <app-skill-tag [name]="skill" />
+        }
+      </div>
+    </section>
+
+    <section class="profile-section">
+      <h2>Mon portfolio</h2>
+
+      @if (s.portfolio) {
+        <a [href]="s.portfolio" target="_blank">
+          Voir mon portfolio
+        </a>
+      } @else {
+        <p>Aucun portfolio ajouté.</p>
+      }
+    </section>
+
+  } @else {
+    <p>Chargement du profil...</p>
+  }
+
+</div>
