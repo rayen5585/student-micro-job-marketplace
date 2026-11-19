@@ -4,12 +4,10 @@ const cors = require('cors');
 const sequelize = require('./config/db');
 
 // ─── Models (must be loaded before sync) ────────────────────────────────────
-require('./modules/users/user.model');      // Student 1 (Khoubaib) user table
-require('./modules/jobs/job.model');        // Student 2 job table
-require('./modules/proposals/proposal.associations'); // Student 3 (Rayen) + relations
-
-// Note: Student.js (Khoubaib) uses a separate "students" table.
-// It is loaded automatically via users.routes.js when that module is required.
+require('./modules/users/user.model');           // Rayen: users table (proposals, search, admin)
+require('./models/Student');                     // Khoubaib: students table (auth, profile, role)
+require('./modules/jobs/job.model');             // jobs table
+require('./modules/proposals/proposal.associations'); // proposals + FK relations
 
 const app = express();
 
