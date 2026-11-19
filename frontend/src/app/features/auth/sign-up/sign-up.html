@@ -1,0 +1,82 @@
+<div class="auth-page">
+    <div class="auth-layout">
+  
+      <section class="auth-promo">
+        <p class="auth-brand">◆ Micro-Job Marketplace</p>
+        <h1>Rejoins la marketplace de micro-jobs</h1>
+        <p class="auth-muted">✓ Inscription en moins d’une minute</p>
+  
+        <div class="auth-feature">
+          <span class="auth-feature-icon">✓</span>
+          <div><h2>Publie des petits jobs</h2><p>Logo, cours de calcul… poste ton besoin en quelques secondes.</p></div>
+        </div>
+        <div class="auth-feature">
+          <span class="auth-feature-icon">✓</span>
+          <div><h2>Reçois des propositions</h2><p>Compare les offres des autres étudiants et choisis la meilleure.</p></div>
+        </div>
+        <div class="auth-feature">
+          <span class="auth-feature-icon">✓</span>
+          <div><h2>Crée ton profil</h2><p>Ajoute tes compétences et ton portfolio pour être trouvé.</p></div>
+        </div>
+      </section>
+  
+      <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <p class="auth-center">S’inscrire avec :</p>
+        <div class="auth-social">
+          <button type="button" class="auth-social-btn" (click)="googleLogin()">Continuer avec Google</button>
+        </div>
+        <div class="auth-divider">Ou</div>
+  
+        <div class="auth-row">
+          <div>
+            <label class="auth-label" for="firstName">Prénom</label>
+            <input id="firstName" class="auth-input auth-user" type="text" formControlName="firstName" placeholder="Prénom">
+            @if (form.controls.firstName.touched && form.controls.firstName.invalid) {
+              <p class="auth-error">Le prénom est obligatoire.</p>
+            }
+          </div>
+          <div>
+            <label class="auth-label" for="lastName">Nom</label>
+            <input id="lastName" class="auth-input auth-user" type="text" formControlName="lastName" placeholder="Nom">
+            @if (form.controls.lastName.touched && form.controls.lastName.invalid) {
+              <p class="auth-error">Le nom est obligatoire.</p>
+            }
+          </div>
+        </div>
+  
+        <label class="auth-label" for="email">Email</label>
+        <input id="email" class="auth-input auth-mail" type="email" formControlName="email" placeholder="Email">
+        @if (form.controls.email.touched && form.controls.email.invalid) {
+          <p class="auth-error">Entre un email valide.</p>
+        }
+  
+        <label class="auth-label" for="password">Mot de passe</label>
+        <div class="auth-field">
+          <input id="password" class="auth-input auth-lock" [type]="showPassword() ? 'text' : 'password'" formControlName="password" placeholder="Mot de passe">
+          <button type="button" class="auth-eye" (click)="showPassword.set(!showPassword())"
+            [attr.aria-label]="showPassword() ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"></button>
+        </div>
+        <p class="auth-hint">Minimum 6 caractères.</p>
+        @if (form.controls.password.touched && form.controls.password.invalid) {
+          <p class="auth-error">Le mot de passe doit contenir au moins 6 caractères.</p>
+        }
+  
+        <label class="auth-label" for="confirmPassword">Confirmer le mot de passe</label>
+        <div class="auth-field">
+          <input id="confirmPassword" class="auth-input auth-lock" [type]="showPassword() ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Confirmer le mot de passe">
+        </div>
+        @if (form.controls.confirmPassword.touched && form.hasError('mismatch')) {
+          <p class="auth-error">Les mots de passe ne sont pas identiques.</p>
+        }
+  
+        @if (error()) {
+          <p class="auth-error">{{ error() }}</p>
+        }
+  
+        <button type="submit" class="auth-submit">Créer mon compte</button>
+  
+        <p class="auth-footer">Déjà un compte ? <a class="auth-link" routerLink="/sign-in">Se connecter</a></p>
+      </form>
+  
+    </div>
+  </div>

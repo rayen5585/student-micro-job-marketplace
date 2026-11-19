@@ -1,0 +1,28 @@
+<div class="role-page">
+  <h1>Que veux-tu faire ?</h1>
+  <p class="subtitle">Choisis ton rôle pour continuer.</p>
+
+  @if (message()) {
+    <p class="error">{{ message() }}</p>
+  }
+
+  <div class="role-zones">
+    <button
+      type="button"
+      class="role-zone client"
+      [disabled]="saving()"
+      (click)="choose('client')">
+      <h2>Je suis Client</h2>
+      <p>Je publie de petits jobs et je choisis un étudiant freelancer pour les réaliser.</p>
+    </button>
+
+    <button
+      type="button"
+      class="role-zone freelancer"
+      [disabled]="saving()"
+      (click)="choose('freelancer')">
+      <h2>Je suis Freelancer</h2>
+      <p>Je propose mes compétences et je réponds aux jobs publiés par les clients.</p>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+.role-page {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #1e293b;
+}
+
+.role-page h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+.subtitle {
+  margin: 0 0 30px;
+  color: #64748b;
+}
+
+.error {
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  color: #b91c1c;
+}
+
+/* Les deux zones côte à côte */
+.role-zones {
+  display: flex;
+  gap: 24px;
+}
+
+.role-zone {
+  flex: 1;
+  min-height: 220px;
+  padding: 30px 24px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  transition: transform 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.role-zone h2 {
+  margin: 0 0 12px;
+  font-size: 24px;
+}
+
+.role-zone p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.role-zone.client:hover:not(:disabled) {
+  border-color: #2563eb;
+  background: #eff6ff;
+  transform: translateY(-4px);
+}
+
+.role-zone.freelancer:hover:not(:disabled) {
+  border-color: #16a34a;
+  background: #f0fdf4;
+  transform: translateY(-4px);
+}
+
+.role-zone:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Téléphone : les zones passent l'une sous l'autre */
+@media (max-width: 600px) {
+  .role-zones {
+    flex-direction: column;
+  }
+}
